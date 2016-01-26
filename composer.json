@@ -1,0 +1,7 @@
+{
+    "require": {
+        "twig/twig": "~1.0",
+        "twbs/bootstrap": "^3.3",
+        "twig/extensions": "^1.3"
+    }
+}
