@@ -25,7 +25,7 @@ define('__DB_PASSWORD__', $db_password); // On définit le mot de passe de la bas
 define("__ENV_MODE__", $env);
 
 require_once(__ROOT__.'Sys/EnvController.class.php');
-$Env = new Fmkj\Controllers\Env();
+$Env = new Sys\Controllers\Env();
 
 require_once(__ROOT__.'Sys/BaseController.class.php');
 require_once(__ROOT__.'Sys/RouteController.class.php');
