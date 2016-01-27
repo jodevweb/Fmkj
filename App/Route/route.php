@@ -9,7 +9,7 @@
  *
  */
 
-$load = new \Fmkj\Controllers\Route();
+$load = new \Sys\Controllers\Route();
 
 $load->Route('/routes', array('controller' => 'FullRoute', 'action' => 'allroute'));
 $load->Route('/bonjour/:prenom/:nom', array('controller' => 'Core', 'action' => 'hello'));

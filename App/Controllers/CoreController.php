@@ -10,8 +10,8 @@
  */
 namespace Controllers\CoreController;
 
-use Fmkj\Controllers\Base;
-use Fmkj\Controllers\Form; // Obligatoire pour créer un formulaire
+use Sys\Controllers\Base;
+use Sys\Controllers\Form; // Obligatoire pour créer un formulaire
 
 class Core extends Base
 {

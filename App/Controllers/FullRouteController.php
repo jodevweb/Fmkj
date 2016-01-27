@@ -10,7 +10,7 @@
  */
 namespace Controllers\FullRouteController;
 
-use Fmkj\Controllers\Base;
+use Sys\Controllers\Base;
 
 class FullRoute extends Base
 {
