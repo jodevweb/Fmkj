@@ -21,7 +21,11 @@ class Route extends Base
     private $urlTerminal;
 
     public function __construct() {
-        $this->urlClient = htmlentities($_GET['url'], ENT_QUOTES);
+        if (!empty($_GET['url'])) {
+            $this->urlClient = htmlentities($_GET['url'], ENT_QUOTES);
+        } else {
+            $this->urlClient = 'index';
+        }
     }
 
     public function Route($url, $bind) {
