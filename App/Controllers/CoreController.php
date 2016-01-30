@@ -26,7 +26,7 @@ class Core extends Base
 
         //$articles = $reponse->fetchAll();
 
-        echo $twig->render('index.twig');
+        echo $twig->render('index.twig'); // Use bootstrap "index.bootstrap.twig"
     }
 
 
