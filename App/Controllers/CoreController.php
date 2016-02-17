@@ -19,10 +19,11 @@ class Core extends Base
 {
     public function indexRoute()
     {
-        $Data = new Datadon();
+        $Datadon = new Datadon();
         $Request = new Request();
 
-        $Articles = $Data->findAll('articles', array(
+        $Articles = $Datadon->findAll('articles', array(
+            'select' => array('*'),
             'join' => array(
                 'user',
                 'left',
@@ -30,16 +31,14 @@ class Core extends Base
             )
         ));
 
-        $Articles2 = $Data->findAll('articles', array(
-            'join' => array(
-                'user',
-                'left',
-                'user.id = articles.user_id'
-            )
-        ));
+        $Data = $Request->request();
 
-        $Value = $Request->request();
+        if ($Request->isPost()) {
+            if (!empty($Data['id'])) {
+                return true;
+            }
+        }
 
-        echo Base::view()->render('bootstrap/index.bootstrap.twig', array('articles' => $Articles, 'post' => $Value));
+        echo Base::view()->render('bootstrap/index.bootstrap.twig', array('articles' => $Articles, 'request' => $Data));
     }
 }

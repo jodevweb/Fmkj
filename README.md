@@ -72,21 +72,50 @@ File : route.php
 
 
 
-### Use MySQL
+### Use Query builder
+
+Use : use Sys\Controllers\Datadon;
 
 Example :
 
 ```
     public function MyFirstQuery()
     {
-        $db = Base::db();
+        $Datadon = new Datadon();
 
-        $reponse = $db->prepare('SELECT * FROM articles');
-        $reponse->execute();
-
-        $articles = $reponse->fetchAll();
+        $Articles = $Datadon->findAll('articles', array(
+            'select' => array('*'),
+            'join' => array(
+                'user',
+                'left',
+                'user.id = articles.user_id'
+            )
+        ));
 
     }
+```
+
+### Request
+
+Use : use Sys\Controllers\Request;
+
+Example : 
+
+```
+        $Request = new Request();
+	$Data = $Request->request();
+        
+        if ($Request->isPost()) {
+            if (!empty($Data['id'])) {
+                return true;
+            }
+        }
+
+        if ($Request->isGet()) {
+            if (!empty($Data['id'])) {
+                return true;
+            }
+        }
 ```
 
 ### Create a view in controller (with Twig) :
