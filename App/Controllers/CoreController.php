@@ -30,6 +30,14 @@ class Core extends Base
             )
         ));
 
+        $Articles2 = $Data->findAll('articles', array(
+            'join' => array(
+                'user',
+                'left',
+                'user.id = articles.user_id'
+            )
+        ));
+
         $Value = $Request->request();
 
         echo Base::view()->render('bootstrap/index.bootstrap.twig', array('articles' => $Articles, 'post' => $Value));

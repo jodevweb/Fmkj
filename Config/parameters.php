@@ -9,7 +9,7 @@
  */
 
 $env                = 'dev';
-$dir_project        = '/Project-1/'; // Dossier de votre application (si à la racine, mettre '/')
+$dir_project        = '/Fmkj/'; // Dossier de votre application (si à la racine, mettre '/')
 $dir_bootstrap      = 'vendor/twbs/bootstrap'; // Dossier de bootstrap (laisser par defaut)
 $dir_views          = 'App/Views'; // Dossier des vues (laisser par defaut)
 $dir_controllers    = 'App/Controllers'; // Dossier des controllers

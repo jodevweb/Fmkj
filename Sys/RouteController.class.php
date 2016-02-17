@@ -99,11 +99,11 @@ class Route extends Base
                         $viewparam .= $paramdebug.'/';
                     }
 
-                    $this->urlTerminal = 'Route: <code>'.$routePremier. '</code> Parameters: <code>'.$viewparam.'</code> Controller: <code>'.$this->controller.'</code> Method: <code>'.$this->method.'</code>';
+                    $this->urlTerminal = '<span class="dpm">Route: <kbd>'.$routePremier. '</kbd></span> <span class="dpm">Parameters: <kbd>'.$viewparam.'</kbd></span> <span class="dpm">Controller: <kbd>'.$this->controller.'</kbd></span> <span class="dpm">Method: <kbd>'.$this->method.'</kbd></span>';
                     return $this->classOn->$method($this->param);
                     exit();
                 } else {
-                    $this->urlTerminal = 'Route: <code>'.$routePremier. '</code> Parameters: <code>N/A</code> Controller: <code>'.$this->controller.'</code> Method: <code>'.$this->method.'</code>';
+                    $this->urlTerminal = '<span class="dpm">Route: <kbd>'.$routePremier. '</kbd></span> <span class="dpm">Parameters: <kbd>N/A</kbd></span> <span class="dpm">Controller: <kbd>'.$this->controller.'</kbd></span> <span class="dpm">Method: <kbd>'.$this->method.'</kbd></span>';
                     return $this->classOn->$method();
                     exit();
                 }

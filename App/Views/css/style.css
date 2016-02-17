@@ -3,3 +3,72 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+#debug .bottom {
+  bottom: 0;
+  margin-bottom: 0;
+  border-width: 1px 0 0;
+}
+
+#debug .alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+#debug .alert {
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+#debug b, strong {
+  font-weight: 700;
+}
+
+#debug code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+#debug kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #fff;
+  background-color: #333;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+  padding: 6px;
+}
+
+#debug code, kbd, pre, samp {
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
+#debug .debugbar {
+  border-right: 3px solid #a94442;
+  padding: 6px 12px 8px 5px;
+}
+
+#debug .param {
+  margin-left: 25px;
+}
+
+#debug .exec {
+  float: right;
+}
+
+#debug .bottom, .top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+#debug .dpm {
+  margin-left: 8px;
+}

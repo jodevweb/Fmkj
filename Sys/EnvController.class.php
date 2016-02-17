@@ -65,11 +65,18 @@ class Env
     public function debugbar($param, $exec)
     {
         if (__ENV_MODE__ == "dev") {
-            $HTMLdebug = '<div style="position:absolute;bottom: 0;width: 100%;padding: 10px;background-color: #843534;color: #FFFFFF;">
-                            <div style="float: left;border-right: solid 1px #FFFFFF;width: 100px;">DEBUBBAR</div>
-                                <span style="margin-left: 50px;">'.$param.'</span>
-                                <span style="float:right;">Execution : '.round($exec, 6).' sec</span>
-                          </div>';
+            $HTMLdebug = '
+                       <div id="debug">
+                         <div class="alert alert-danger bottom" role="alert">
+                            <strong class="debugbar">DEBUGBAR</strong>
+                            <span class="param">'.$param.'</span>
+                            <span class="param">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Query">List: Query</button>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Request">List: Request</button>
+                            </span>
+                            <span class="exec">Execution : '.round($exec, 6).' sec</span>
+                         </div>
+                       </div>';
 
             return $HTMLdebug;
         }
