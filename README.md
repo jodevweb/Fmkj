@@ -13,8 +13,8 @@ Micro Framework MVC
 # Doc
 
 
-###
- Parameters
+
+### Parameters
 
 Dir Config/;
 
@@ -25,6 +25,7 @@ configure your application by changing the name of your project and the login in
 Attention, default is dev environment if you want to change the environment in production, replacing it :
 
 $env                = 'dev';
+
 $env                = 'prod';
 
 
@@ -72,7 +73,7 @@ File : route.php
 
 
 
-### Use Query builder
+### Query builder
 
 Use : use Sys\Controllers\Datadon;
 
