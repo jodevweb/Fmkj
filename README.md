@@ -102,8 +102,10 @@ Use : use Sys\Controllers\Request;
 Example : 
 
 ```
+    public function MyFirstRequest()
+    {
         $Request = new Request();
-	$Data = $Request->request();
+		$Data = $Request->request();
         
         if ($Request->isPost()) {
             if (!empty($Data['id'])) {
@@ -116,6 +118,8 @@ Example :
                 return true;
             }
         }
+
+    }
 ```
 
 ### Create a view in controller (with Twig) :
