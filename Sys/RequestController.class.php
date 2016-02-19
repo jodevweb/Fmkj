@@ -75,6 +75,27 @@ class Request
         return $method;
     }
 
+    public function validate($args)
+    {
+        if (is_array($args)) {
+            $countArgs = count($args);
+            $countK = 0;
+
+            foreach($args as $value) {
+                foreach($this->request() as $key => $request) {
+                    if ($value == $key) {
+                        $countK++;
+                    }
+                }
+            }
+
+            if ($countK == $countArgs) {
+                return true;
+            }
+
+        }
+    }
+
     public function getRequest()
     {
         $out = 'POST:<br />' . $this->output_post . ' <br />GET:<br />' . $this->output_get;

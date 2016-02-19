@@ -12,6 +12,7 @@ class Datadon
     private $requetes = "";
     private $error_query = "";
     private $success_query = "";
+    public $nbQuery = 0;
 
     public function __destruct()
     {
@@ -108,7 +109,7 @@ class Datadon
         if ($reponse): $this->success_query = false; else: $this->success_query = 'Success'; endif;
 
         $this->requetes .= '<kbd>SELECT ' . $distinct . $selected . ' FROM ' . $table . $jointure . $where . $limit.'</kbd> '. $this->error_query .'  '. $this->success_query .'<br />';
-
+        $this->nbQuery++;
         return $reponse->fetch();
     }
     public function findAll($table, $args = false)
@@ -183,11 +184,15 @@ class Datadon
         if ($reponse): $this->success_query = 'Success'; else: $this->error_query = 'Error'; endif;
 
         $this->requetes .= '<kbd>SELECT ' . $distinct . $selected . ' FROM ' . $table . $jointure . $where . $limit.'</kbd> '. $this->error_query .'  '. $this->success_query .'<br />';
-
+        $this->nbQuery++;
         return $reponse->fetchAll();
     }
 
     public function getRequetes() {
         return $this->requetes;
+    }
+
+    public function getNbRequetes() {
+        return $this->nbQuery;
     }
 }

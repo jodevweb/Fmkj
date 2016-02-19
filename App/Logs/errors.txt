@@ -636,3 +636,19 @@ Stack trace:
 [10-Feb-2016 21:20:38 Europe/Paris] PHP   3. Sys\Controllers\Route->Route() C:\wamp\www\GameTest\App\Route\route.php:16
 [10-Feb-2016 21:20:38 Europe/Paris] PHP   4. Sys\Controllers\Route->Callback() C:\wamp\www\GameTest\Sys\RouteController.class.php:40
 [10-Feb-2016 21:20:38 Europe/Paris] PHP   5. Controllers\CoreController\Core->indexRoute() C:\wamp\www\GameTest\Sys\RouteController.class.php:107
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Fatal error:  Class 'Sys\Controllers\Sys\Controllers\Datadon' not found in C:\wamp\www\Fmkj\Sys\EnvController.class.php on line 74
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Stack trace:
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   1. {main}() C:\wamp\www\Fmkj\index.php:0
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   2. Sys\Controllers\Env->debugbar() C:\wamp\www\Fmkj\index.php:34
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Fatal error:  Class 'Sys\Controllers\Sys\Controllers\Datadon' not found in C:\wamp\www\Fmkj\Sys\EnvController.class.php on line 74
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Fatal error:  Class 'Sys\Controllers\Sys\Controllers\Datadon' not found in C:\wamp\www\Fmkj\Sys\EnvController.class.php on line 74
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Fatal error:  Class 'Sys\Controllers\Sys\Controllers\Datadon' not found in C:\wamp\www\Fmkj\Sys\EnvController.class.php on line 74
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Stack trace:
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Stack trace:
+[18-Feb-2016 20:00:51 Europe/Paris] PHP Stack trace:
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   1. {main}() C:\wamp\www\Fmkj\index.php:0
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   1. {main}() C:\wamp\www\Fmkj\index.php:0
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   1. {main}() C:\wamp\www\Fmkj\index.php:0
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   2. Sys\Controllers\Env->debugbar() C:\wamp\www\Fmkj\index.php:34
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   2. Sys\Controllers\Env->debugbar() C:\wamp\www\Fmkj\index.php:34
+[18-Feb-2016 20:00:51 Europe/Paris] PHP   2. Sys\Controllers\Env->debugbar() C:\wamp\www\Fmkj\index.php:34

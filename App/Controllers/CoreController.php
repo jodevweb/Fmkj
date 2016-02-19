@@ -33,12 +33,14 @@ class Core extends Base
 
         $Data = $Request->request();
 
-        if ($Request->isPost()) {
-            if (!empty($Data['id'])) {
-                return true;
+        if ($Request->isGet()) {
+            if ($Request->validate(['test', 'test2'])) {
+                echo 'tout est ok';
+            } else {
+                echo 'tout n\'est pas ok';
             }
         }
 
-        echo Base::view()->render('bootstrap/index.bootstrap.twig', array('articles' => $Articles, 'request' => $Data));
+        echo Base::view()->render('index.twig', array('articles' => $Articles, 'request' => $Data));
     }
 }
