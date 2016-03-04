@@ -64,15 +64,13 @@ class Request
     {
         $method = array_map('htmlentities', array_merge($this->post, $this->get));
 
-        foreach($this->post as $request_post) {
-            $this->output_post .= '<kbd>' . $request_post . '</kbd><br />';
-        }
-
-        foreach($this->get as $request_get) {
-            $this->output_get .= '<kbd>' . $request_get . '</kbd><br />';
-        }
-
         return $method;
+    }
+
+    public function redirect($location)
+    {
+        header('Location: '.$location);
+        exit();
     }
 
     public function validate($args)
@@ -98,8 +96,14 @@ class Request
 
     public function getRequest()
     {
-        $out = 'POST:<br />' . $this->output_post . ' <br />GET:<br />' . $this->output_get;
-        return $out;
+        foreach($this->post as $request_post) {
+            $this->output_post .= '<kbd>' . $request_post . '</kbd><br />';
+        }
+
+        foreach($this->get as $request_get) {
+            $this->output_get .= '<kbd>' . $request_get . '</kbd><br />';
+        }
+        return 'POST:<br />' . $this->output_post . ' <br />GET:<br />' . $this->output_get;
     }
 
 }

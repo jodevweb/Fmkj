@@ -31,16 +31,18 @@ class Core extends Base
             )
         ));
 
+        /*
         $Data = $Request->request();
 
         if ($Request->isGet()) {
             if ($Request->validate(['test', 'test2'])) {
                 echo 'tout est ok';
             } else {
-                echo 'tout n\'est pas ok';
+                $Request->redirect('routes');
             }
         }
+        */
 
-        echo Base::view()->render('index.twig', array('articles' => $Articles, 'request' => $Data));
+        echo Base::view()->render('index.twig', array('articles' => $Articles));
     }
 }
