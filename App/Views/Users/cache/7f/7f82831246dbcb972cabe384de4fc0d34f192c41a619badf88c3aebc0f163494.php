@@ -1,14 +1,14 @@
 <?php
 
-/* index.twig */
-class __TwigTemplate_a28b74e7573f5f70dfe04fbe29d4b41c1cb2f12ec4aff412d4e0b639459fe2ea extends Twig_Template
+/* login.twig */
+class __TwigTemplate_f546d8393236e428b8cb76400cc11bb4f48aaec2f755dc1495b57966db2f9682 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("layout.twig", "index.twig", 1);
+        $this->parent = $this->loadTemplate("layout.twig", "login.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'head' => array($this, 'block_head'),
@@ -47,30 +47,17 @@ class __TwigTemplate_a28b74e7573f5f70dfe04fbe29d4b41c1cb2f12ec4aff412d4e0b639459
     public function block_body($context, array $blocks = array())
     {
         // line 10
+        echo "    ";
+        echo (isset($context["form"]) ? $context["form"] : null);
         echo "
-    ";
-        // line 11
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["articles"]) ? $context["articles"] : null));
-        foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
-            // line 12
-            echo "        ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["article"], "titre", array()), "html", null, true);
-            echo "
-    ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['article'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 14
-        echo "
+
 ";
     }
 
-    // line 17
+    // line 14
     public function block_footer($context, array $blocks = array())
     {
-        // line 18
+        // line 15
         echo "    ";
         $this->displayParentBlock("footer", $context, $blocks);
         echo "
@@ -79,7 +66,7 @@ class __TwigTemplate_a28b74e7573f5f70dfe04fbe29d4b41c1cb2f12ec4aff412d4e0b639459
 
     public function getTemplateName()
     {
-        return "index.twig";
+        return "login.twig";
     }
 
     public function isTraitable()
@@ -89,7 +76,7 @@ class __TwigTemplate_a28b74e7573f5f70dfe04fbe29d4b41c1cb2f12ec4aff412d4e0b639459
 
     public function getDebugInfo()
     {
-        return array (  74 => 18,  71 => 17,  66 => 14,  57 => 12,  53 => 11,  50 => 10,  47 => 9,  40 => 6,  37 => 5,  31 => 3,  11 => 1,);
+        return array (  61 => 15,  58 => 14,  50 => 10,  47 => 9,  40 => 6,  37 => 5,  31 => 3,  11 => 1,);
     }
 }
 /* {% extends "layout.twig" %}*/
@@ -101,10 +88,7 @@ class __TwigTemplate_a28b74e7573f5f70dfe04fbe29d4b41c1cb2f12ec4aff412d4e0b639459
 /* {% endblock %}*/
 /* */
 /* {% block body %}*/
-/* */
-/*     {% for article in articles %}*/
-/*         {{ article.titre }}*/
-/*     {% endfor %}*/
+/*     {{ form|raw }}*/
 /* */
 /* {% endblock %}*/
 /* */

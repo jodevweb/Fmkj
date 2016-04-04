@@ -1,5 +1,0 @@
-data:
-    int: id
-    varchar: titre
-    longtext: contenu
-    datetime: date

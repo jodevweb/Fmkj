@@ -22,14 +22,22 @@ abstract class Base
     // Url du projet
     const URL_PATH = __URL_LOCAL__;
 
-    public static function view()
+    public static function view($modules = NULL)
     {
         include_once(__ROOT__.'vendor/autoload.php');
 
-        $loader = new \Twig_Loader_Filesystem(__VIEWS__); // Dossier contenant les templates
+        if (!empty($modules)):
+            $views = __VIEWS__ . '/' . $modules;
+        else:
+            $views = __VIEWS__;
+        endif;
+
+        if (__ENV_MODE__ == "dev"): $cache = false; else: $cache = true; endif;
+
+        $loader = new \Twig_Loader_Filesystem($views); // Dossier contenant les templates
         $twig = new \Twig_Environment($loader, array(
-            'cache' => __VIEWS__.'/cache/',
-            'auto_reload' => true
+            'cache' => $views.'/cache/',
+            'auto_reload' => $cache
         ));
         $twig->addExtension(new \Twig_Extensions_Extension_Text());
         $twig->addExtension(new \Twig_Extensions_Extension_I18n());
@@ -38,7 +46,7 @@ abstract class Base
         $twig->addExtension(new \Twig_Extensions_Extension_Date());
 
         $twig->addGlobal('app_name', __NAME_APPLICATION__);
-        $path = array('views' => __VIEWS__, 'url' => __URL_LOCAL__, 'bootstrap' => __BOOTSTRAP__);
+        $path = array('views' => $views, 'url' => __URL_LOCAL__, 'bootstrap' => __BOOTSTRAP__);
         $twig->addGlobal('path', $path);
         $route = array('only' => 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
         $twig->addGlobal('route', $route);

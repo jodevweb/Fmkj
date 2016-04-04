@@ -1,0 +1,16 @@
+{% extends "layout.twig" %}
+
+{% block title %}{{ app_name }}{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {{ form|raw }}
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
