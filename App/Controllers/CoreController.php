@@ -11,7 +11,7 @@
 namespace Controllers\CoreController;
 
 use Sys\Controllers\Base;
-use Sys\Controllers\Form; // Obligatoire pour cr�er un formulaire
+use Sys\Controllers\Form; // Obligatoire pour créer un formulaire
 use Sys\Controllers\Datadon; // Facultatif pour utiliser le "query builder"
 use Sys\Controllers\Request; // Facultatif pour utiliser post & get
 
