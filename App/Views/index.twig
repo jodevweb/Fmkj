@@ -9,7 +9,7 @@
 {% block body %}
 
     {% for article in articles %}
-        {{ article.titre }}
+        {{ article.titre }} by {{ article.login }}
     {% endfor %}
 
 {% endblock %}

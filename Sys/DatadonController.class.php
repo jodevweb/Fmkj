@@ -144,27 +144,31 @@ class Datadon
                 $distinct = false;
             }
 
+
             // Argument : Join; jointure requête SQL
             if (!empty($args['join']) AND is_array($args['join'])) {
-                $jointure = '';
-                if (!empty($args['join'][0]) AND !empty($args['join'][1]) AND !empty($args['join'][2])) {
-                    if (in_array('left', $args['join'])
-                        OR in_array('right', $args['join'])
-                        OR in_array('inner', $args['join'])
-                        OR in_array('cross', $args['join'])
-                        OR in_array('full', $args['join'])
-                        OR in_array('self', $args['join'])
-                        OR in_array('natural', $args['join'])) {
-                        $jointure .= ' ' . $args['join'][1] . ' JOIN ' . $args['join'][0] . ' ON ' . $args['join'][2];
-                    } else {
+              $jointure = '';
+              foreach ($args['join'] as $key => $value) {
+                if (!empty($value[0]) AND !empty($value[1])) {
+                  if (in_array('left', $value)
+                      OR in_array('right', $value)
+                      OR in_array('inner', $value)
+                      OR in_array('cross', $value)
+                      OR in_array('full', $value)
+                      OR in_array('self', $value)
+                      OR in_array('natural', $value)) {
+                        $jointure .= ' ' . $value[0] . ' JOIN ' . $key . ' ON ' . $value[1];
+                      } else {
                         $jointure = false;
-                    }
+                      }
                 } else {
-                    $jointure = false;
+                  $jointure = false;
                 }
+              }
             } else {
-                $jointure = false;
+              $jointure = false;
             }
+
 
             // Argument : Limit; Limit les résultats de la requête
             if (!empty($args['limit']) AND is_array($args['limit'])) {
