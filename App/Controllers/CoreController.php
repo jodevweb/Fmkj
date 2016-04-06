@@ -26,14 +26,16 @@ class Core extends Base
             'select' => array('*'),
             'join' => array(
                 'user' => array(
-                  'left',
-                  'user.id = articles.user_id'
+                    'left',
+                    'user.id = articles.user_id'
                 ),
                 'profile' => array(
-                  'left',
-                  'profile.user_id = articles.user_id'
+                    'left',
+                    'profile.user_id = articles.user_id'
                 ),
             ),
+            'where' => 'user.id = 1 AND articles.id != 3',
+            'limit' => array('1', '3'),
         ));
 
         /*
