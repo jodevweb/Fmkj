@@ -35,10 +35,17 @@ abstract class Base
         if (__ENV_MODE__ == "dev"): $cache = false; else: $cache = true; endif;
 
         $loader = new \Twig_Loader_Filesystem($views); // Dossier contenant les templates
-        $twig = new \Twig_Environment($loader, array(
-            'cache' => $views.'/cache/',
-            'auto_reload' => $cache
-        ));
+        if ($cache):
+            $twig = new \Twig_Environment($loader, array(
+                'debug' => false,
+                'cache' => $views.'/cache/',
+                'auto_reload' => true
+            ));
+        else:
+            $twig = new \Twig_Environment($loader, array(
+                'debug' => true,
+            ));
+        endif;
         $twig->addExtension(new \Twig_Extensions_Extension_Text());
         $twig->addExtension(new \Twig_Extensions_Extension_I18n());
         $twig->addExtension(new \Twig_Extensions_Extension_Intl());
