@@ -1,0 +1,67 @@
+#!/usr/bin/php
+<?php
+
+if ($argc != 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
+    ?>
+
+    Cette ligne de commande possède une option.
+
+    Utilisation :
+    php <?php echo $argv[0]; ?> <option>
+
+    <option> peut etre un mot que vous souhaitez afficher.
+        Avec les options --help, -help, -h,
+        et -?, vous obtiendrez cette aide.
+
+    <?php
+} else {
+    if ($argv[1] == "route") {
+        include_once('../Config/parameters.php');
+        include_once('../autoload.php');
+
+        echo "###################################\nListe des routes disponible : \n###################################\n\n";
+
+
+        $AllControllers = array_diff(scandir('../..' . $dir_project . $dir_controllers), array('..', '.'));
+
+        if ($module['name']) {
+            foreach ($module['name'] as $modules) {
+                $AllControllersModule = array_diff(scandir('../..' . $dir_project . 'App/Modules/' . $modules . '/Controllers/'), array('..', '.'));
+            }
+        }
+
+        foreach ($AllControllers as $Controllers) {
+            $Class = substr($Controllers, 0, strlen($Controllers) - 14);
+            $Fichier = substr($Controllers, 0, strlen($Controllers) - 4);
+            require_once('../../' . $dir_project . $dir_controllers . '/' . $Fichier . '.php');
+
+            $RouteAll = get_class_methods('\\Controllers\\' . $Fichier . '\\' . $Class);
+
+            foreach($RouteAll as $Routes)
+            {
+                if (strpos($Routes, 'Route'))
+                {
+                    echo '- ' . substr($Routes, 0, strlen($Routes) - 5)." (Controller : ".$Fichier." | Class : ".$Class.")\n";
+                }
+            }
+        }
+
+        foreach ($AllControllersModule as $Controllers) {
+            $Class = substr($Controllers, 0, strlen($Controllers) - 14);
+            $Fichier = substr($Controllers, 0, strlen($Controllers) - 4);
+            require_once('../../' . $dir_project . 'App/Modules/' . $modules . '/Controllers/' . $Fichier . '.php');
+
+            $RouteAll = get_class_methods('\\Module\\Controllers\\' . $Fichier . '\\' . $Class);
+
+            foreach($RouteAll as $Routes)
+            {
+                if (strpos($Routes, 'Route'))
+                {
+                    echo '- ' . substr($Routes, 0, strlen($Routes) - 5)." (Controller : ".$Fichier." | Class : ".$Class.")\n";
+                }
+            }
+        }
+
+    }
+}
+?>
