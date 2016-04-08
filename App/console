@@ -70,22 +70,24 @@ if (count($argv) <= 1 || in_array($argv[1], array('--help', '-help', '-h', '-?')
             }
         }
     }
+
+    
     if ($argv[1] == "create") {
       if (!empty($argv[2])) {
         if ($argv[2] == "route") {
           if (!empty($argv[3]) AND !empty($argv[4])) {
 
+            $fichier = fopen ('../../' . $dir_project . $dir_controllers . '/' . $argv[3].'.php', "a+");
             $newcode = "
     public function ".$argv[4]."Route()
     {
 
     }
+  }
             ";
 
-
-            $fichier = fopen ('../../' . $dir_project . $dir_controllers . '/' . $argv[3].'.php', "a+");
+            fseek($fichier, 20);
             fwrite($fichier, $newcode);
-            fseek($fichier, 0);
             fclose ($fichier);
 
 
