@@ -8,13 +8,7 @@
  *
  */
 
-// Instantiate module
-$module = array(
-    'name' =>
-        array(
-            'Users'
-        ),
-);
+require_once('Config/modules.php');
 define('MODULES', serialize($module));
 
 if (empty($argv)) {
