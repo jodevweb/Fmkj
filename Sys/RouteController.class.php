@@ -20,6 +20,7 @@ class Route extends Base
     private $bindParamRoute;
     private $urlTerminal;
     protected $modules;
+    private $ErrorPage = false;
 
     public function __construct() {
         if (!empty($_GET['url'])) {
@@ -93,9 +94,19 @@ class Route extends Base
 
         if ($urlParam == $routePremier) {
 
-            if ($this->bindParamRoute AND $this->bindParamClient) {
+            if (!empty($this->bindParamRoute) AND !empty($this->bindParamClient)) {
                 $this->param = [];
-                $this->param = array_combine($this->bindParamRoute, $this->bindParamClient);
+                if (count($this->bindParamRoute) == count($this->bindParamClient)) {
+                    $this->param = array_combine($this->bindParamRoute, $this->bindParamClient);
+                } else {
+                    if ($this->ErrorPage == FALSE) {
+                        // Aucune route trouvée
+                        $this->ErrorPage = true;
+                        require_once('ErrorPageController.class.php');
+                        $ErrorPage = new ErrorPage();
+                        return $ErrorPage->PageNoParametersRoute();
+                    }
+                }
             }
 
             $this->FileExisted();
@@ -117,8 +128,6 @@ class Route extends Base
                     $this->urlTerminal = '<span class="dpm">Route: <kbd>'.$routePremier. '</kbd></span> <span class="dpm">Parameters: <kbd>N/A</kbd></span> <span class="dpm">Controller: <kbd>'.$this->controller.'</kbd></span> <span class="dpm">Method: <kbd>'.$this->method.'</kbd></span>';
                     return $this->classOn->$method();
                 }
-            } else {
-                $this->urlTerminal .= 'Method ' . $method . ' inexistante !';
             }
         }
     }
@@ -127,7 +136,13 @@ class Route extends Base
         if ($this->urlTerminal):
             return $this->urlTerminal;
         else:
-            return 'Aucune route trouv&eacute;e';
+            if ($this->ErrorPage == FALSE):
+                // Aucune route trouvée
+                $this->ErrorPage = true;
+                require_once('ErrorPageController.class.php');
+                $ErrorPage = new ErrorPage();
+                return $ErrorPage->PageNotFoundRoute();
+            endif;
         endif;
     }
 }

@@ -19,7 +19,6 @@ class Users extends Base
     public function loginRoute()
     {
         $form = new Form();
-
         $Form = $form->startForm('', 'post', 'login',
                 array('class'=>'login') ) .
 
@@ -27,6 +26,6 @@ class Users extends Base
             $form->addInput('password', 'password', '', array('required'=>true) ) .
             $form->endForm();
 
-        echo Base::view('Users')->render('login.twig', array('form' => $Form));
+        echo Base::view()->render('Users/login.twig', array('form' => $Form));
     }
 }

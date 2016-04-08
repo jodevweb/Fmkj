@@ -25,13 +25,7 @@ abstract class Base
     public static function view($modules = NULL)
     {
         include_once(__ROOT__.'vendor/autoload.php');
-
-        if (!empty($modules)):
-            $views = __VIEWS__ . '/' . $modules;
-        else:
-            $views = __VIEWS__;
-        endif;
-
+        $views = __VIEWS__;
         if (__ENV_MODE__ == "dev"): $cache = false; else: $cache = true; endif;
 
         $loader = new \Twig_Loader_Filesystem($views); // Dossier contenant les templates
