@@ -1,10 +1,20 @@
 #!/usr/bin/php
 <?php
 
-if ($argc != 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
-    ?>
+/**
+ * Fmkj Framework
+ *
+ * Console
+ *
+ *
+ */
 
-    Cette ligne de commande possède une option.
+ include_once('../Config/parameters.php');
+ include_once('../autoload.php');
+
+if (count($argv) <= 1 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) { ?>
+
+    Cette ligne de commande possede une option.
 
     Utilisation :
     php <?php echo $argv[0]; ?> <option>
@@ -16,10 +26,8 @@ if ($argc != 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
     <?php
 } else {
     if ($argv[1] == "route") {
-        include_once('../Config/parameters.php');
-        include_once('../autoload.php');
 
-        echo "###################################\nListe des routes disponible : \n###################################\n\n";
+        echo "\n###################################\nListe des routes disponible : \n###################################\n\n";
 
 
         $AllControllers = array_diff(scandir('../..' . $dir_project . $dir_controllers), array('..', '.'));
@@ -61,7 +69,34 @@ if ($argc != 2 || in_array($argv[1], array('--help', '-help', '-h', '-?'))) {
                 }
             }
         }
+    }
+    if ($argv[1] == "create") {
+      if (!empty($argv[2])) {
+        if ($argv[2] == "route") {
+          if (!empty($argv[3]) AND !empty($argv[4])) {
 
+            $newcode = "
+    public function ".$argv[4]."Route()
+    {
+
+    }
+            ";
+
+
+            $fichier = fopen ('../../' . $dir_project . $dir_controllers . '/' . $argv[3].'.php', "a+");
+            fwrite($fichier, $newcode);
+            fseek($fichier, 0);
+            fclose ($fichier);
+
+
+            echo "\n Vous souhaitez creer une route dans le controller ".$argv[3]." qui a pour nom ".$argv[4]."\n";
+          } else {
+            echo "\n Il manque au moins un argument pour utiliser la commande 'console create route'";
+          }
+        }
+      } else {
+        echo "\n la commande 'console create' possede un deuxieme argument obligatoire.";
+      }
     }
 }
 ?>

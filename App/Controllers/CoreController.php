@@ -53,4 +53,4 @@ class Core extends Base
 
         echo Base::view()->render('index.twig', array('articles' => $Articles));
     }
-}
+}      
