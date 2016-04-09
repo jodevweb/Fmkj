@@ -51,7 +51,13 @@ class Route extends Base
                         if (is_file(__ROOT__ . 'App/Modules/' . $modules . '/Controllers/' . $this->controller . 'Controller.php')) {
                             return require_once(__ROOT__ . 'App/Modules/' . $modules . '/Controllers/' . $this->controller . 'Controller.php');
                         } else {
-                            $this->urlTerminal .= 'Fichier ' . $this->controller . 'Controller.php inexistant !';
+                            if ($this->ErrorPage == FALSE) {
+                                // Aucune route trouvée
+                                $this->ErrorPage = 'fichier';
+                                require_once('ErrorPageController.class.php');
+                                $ErrorPage = new ErrorPage();
+                                return $ErrorPage->PageNoFichier();
+                            }
                         }
                     }
                 }
@@ -71,7 +77,13 @@ class Route extends Base
                         $ClassFull = '\\Module\\Controllers\\' . $Fichier . '\\' . $this->controller;
                         $this->classOn = new $ClassFull;
                     } else {
-                        $this->urlTerminal .= 'Class ' . $this->classOn . ' inexistante !';
+                        if ($this->ErrorPage == FALSE) {
+                            // Aucune route trouvée
+                            $this->ErrorPage = 'fichier';
+                            require_once('ErrorPageController.class.php');
+                            $ErrorPage = new ErrorPage();
+                            return $ErrorPage->PageNoFichier();
+                        }
                     }
                 }
             }
@@ -100,8 +112,8 @@ class Route extends Base
                     $this->param = array_combine($this->bindParamRoute, $this->bindParamClient);
                 } else {
                     if ($this->ErrorPage == FALSE) {
-                        // Aucune route trouv�e
-                        $this->ErrorPage = true;
+                        // Aucune route trouvée
+                        $this->ErrorPage = 'param';
                         require_once('ErrorPageController.class.php');
                         $ErrorPage = new ErrorPage();
                         return $ErrorPage->PageNoParametersRoute();
@@ -128,6 +140,14 @@ class Route extends Base
                     $this->urlTerminal = '<span class="dpm">Route: <kbd>'.$routePremier. '</kbd></span> <span class="dpm">Parameters: <kbd>N/A</kbd></span> <span class="dpm">Controller: <kbd>'.$this->controller.'</kbd></span> <span class="dpm">Method: <kbd>'.$this->method.'</kbd></span>';
                     return $this->classOn->$method();
                 }
+            } else {
+                if ($this->ErrorPage == FALSE):
+                    // Aucune route trouvée
+                    $this->ErrorPage = '404';
+                    require_once('ErrorPageController.class.php');
+                    $ErrorPage = new ErrorPage();
+                    return $ErrorPage->PageNotFoundRoute();
+                endif;
             }
         }
     }
@@ -136,13 +156,7 @@ class Route extends Base
         if ($this->urlTerminal):
             return $this->urlTerminal;
         else:
-            if ($this->ErrorPage == FALSE):
-                // Aucune route trouv�e
-                $this->ErrorPage = true;
-                require_once('ErrorPageController.class.php');
-                $ErrorPage = new ErrorPage();
-                return $ErrorPage->PageNotFoundRoute();
-            endif;
+            return $this->ErrorPage;
         endif;
     }
 }

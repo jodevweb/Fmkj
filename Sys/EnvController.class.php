@@ -41,7 +41,7 @@ class Env
                         break;
 
                     case E_STRICT:
-                        $type_erreur = "Syntaxe Obsol�te";
+                        $type_erreur = "Syntaxe Obsolète";
                         break;
 
                     default:
@@ -65,14 +65,17 @@ class Env
     public function debugbar($param, $exec)
     {
         if (__ENV_MODE__ == "dev") {
+            if ($param == "404"): $disabled = "disabled"; $param = 'Aucune route trouvée'; else: $disabled = false; endif;
+            if ($param == "fichier"): $disabled = "disabled"; $param = 'Aucun controller trouvé'; else: $disabled = false; endif;
+            if ($param == "param"): $disabled = "disabled"; $param = 'Il manque au moins un paramètre'; else: $disabled = false; endif;
             $HTMLdebug = '
                        <div id="debug">
                          <div class="alert alert-danger bottom" role="alert">
                             <strong class="debugbar">DEBUGBAR</strong>
                             <span class="param">'.$param.'</span>
                             <span class="param">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Query">List: Query</button>
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Request">List: Request</button>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Query" '.$disabled.'>List: Query</button>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#Request" '.$disabled.'>List: Request</button>
                             </span>
                             <span class="exec">Execution : '.round($exec, 6).' sec</span>
                          </div>

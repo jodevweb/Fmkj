@@ -22,4 +22,9 @@ class ErrorPage extends Base
     {
         echo Base::view()->render('errors/params.twig');
     }
+
+    public function PageNoFichier()
+    {
+        echo Base::view()->render('errors/nofichier.twig');
+    }
 }

@@ -32,3 +32,4 @@ $timeExec = $end - $start;
 $Env = new Sys\Controllers\Env();
 
 echo $Env->debugbar($load->getRoute(), $timeExec);
+exit();
