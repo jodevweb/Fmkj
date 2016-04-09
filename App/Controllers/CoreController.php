@@ -38,19 +38,6 @@ class Core extends Base
             'limit' => array('1', '3'),
         ));
 
-
-        /*
-        $Data = $Request->request();
-
-        if ($Request->isGet()) {
-            if ($Request->validate(['test', 'test2'])) {
-                echo 'tout est ok';
-            } else {
-                $Request->redirect('routes');
-            }
-        }
-        */
-
         echo Base::view()->render('index.twig', array('articles' => $Articles));
     }
-}      
+}

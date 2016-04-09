@@ -77,8 +77,8 @@ if (count($argv) <= 1 || in_array($argv[1], array('--help', '-help', '-h', '-?')
         if ($argv[2] == "route") {
           if (!empty($argv[3]) AND !empty($argv[4])) {
 
-            $fichier = fopen ('../../' . $dir_project . $dir_controllers . '/' . $argv[3].'.php', "a+");
-            $newcode = "
+            $fichier = fopen ('../../' . $dir_project . $dir_controllers . '/' . $argv[3].'.php', "r+");
+            $code = "
     public function ".$argv[4]."Route()
     {
 
@@ -86,7 +86,16 @@ if (count($argv) <= 1 || in_array($argv[1], array('--help', '-help', '-h', '-?')
   }
             ";
 
-            fseek($fichier, 20);
+            $content = "";
+            while(!feof($fichier)) {
+                $content .= fgets($fichier, 4096);
+            }
+
+            $oldcode = explode("}", $content, -1);
+            $newcode = $oldcode[0] . $code;
+
+            fseek($fichier, 0);
+
             fwrite($fichier, $newcode);
             fclose ($fichier);
 
