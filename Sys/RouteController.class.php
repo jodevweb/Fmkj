@@ -31,7 +31,7 @@ class Route extends Base
         $this->modules = unserialize(MODULES);
     }
 
-    public function Route($url, $bind) {
+    public function Route($url, $bind = []) {
         $this->url = substr($url, 1);
         $this->bind = $bind;
         $this->controller = $this->bind['controller'];
@@ -53,7 +53,7 @@ class Route extends Base
                         } else {
                             if ($this->ErrorPage == FALSE) {
                                 // Aucune route trouvée
-                                $this->ErrorPage = 'fichier';
+                                $this->ErrorPage = '404';
                                 require_once('ErrorPageController.class.php');
                                 $ErrorPage = new ErrorPage();
                                 return $ErrorPage->PageNoFichier();
